@@ -1,6 +1,6 @@
 {
-  "name": "notes",
-  "version": "0.1.0",
+  "name": "create-react-app-auth-amplify",
+  "version": "0.0.0",
   "private": true,
   "dependencies": {
     "aws-amplify": "^2.2.0",

@@ -1,0 +1,27 @@
+type Masters @model 
+	@key(fields: ["type", "masterCode"]){
+	type: MasterType!
+	masterCode: String!
+	party: Party,
+	product: Product,
+	svb: SVB
+}
+
+type Party{
+	partyName: String!
+	partyType: String!
+}
+
+type Product{
+	hsn: String!
+}
+
+type SVB{
+	customsOffice: String!
+}
+
+enum MasterType{
+	PARTY
+	SVB
+	PRODUCT
+}

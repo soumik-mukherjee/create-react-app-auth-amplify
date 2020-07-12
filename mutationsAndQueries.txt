@@ -1,0 +1,60 @@
+# Welcome!
+#
+# This is an in-browser tool for writing, validating, and testing GraphQL queries.
+#
+# An example query named "GetPost" might look like:
+#
+#     query GetPost {
+#       singlePost(id: 123) {
+#         id
+#         title
+#       }
+#     }
+#
+# An example mutation named "PutPost" might look like:
+#
+#     mutation PutPost {
+#       putPost(id: 123, title: "Hello, world!") {
+#         id
+#         title
+#       }
+#     }
+#
+# Keyboard shortcuts:
+#
+#  Prettify Query:  Ctrl+Shift+P (also removes comments)
+#       Run Query:  Ctrl+Enter   (or press the play button above)
+#   Auto Complete:  Ctrl+Space   (or just start typing)
+#
+
+mutation CreateParty {
+  createMasters(input:{type:PARTY, masterCode: "RAMSUNG", party:{partyName:"Ramsung Electronic pvt. Ltd.", partyType:"RESELLER"} }){
+    type
+    masterCode
+    party{
+      partyName
+      partyType
+    }
+  }
+}
+
+mutation CreateProduct {
+  createMasters(input: {type:PRODUCT , masterCode: "MARIE_SILVER", product: {hsn: "64291870-c066-4c6b-b9fc-8059e36caebf"}}) {
+    type
+    masterCode
+    product {
+      hsn
+    }
+  }
+}
+
+mutation CreateSVB {
+  createMasters(input: {type:SVB, masterCode: "SVB001", svb:{customsOffice:"CHENNAI"}}) {
+    type
+    masterCode
+    svb {
+      customsOffice
+    }
+  }
+}
+
