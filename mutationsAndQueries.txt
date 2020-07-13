@@ -28,12 +28,81 @@
 #
 
 mutation CreateParty {
-  createMasters(input:{type:PARTY, masterCode: "RAMSUNG", party:{partyName:"Ramsung Electronic pvt. Ltd.", partyType:"RESELLER"} }){
+  createMasters(
+    input: {
+      type: PARTY
+      masterCode: "HARPCORP"
+      party: {
+        partyCode: "HARPCORP"
+        partyName: "HARP Corporation"
+        partyType: 1
+        validPartyRoles: [EXPORTER, SUPPLIER]
+        organizationType: ""
+        iecCode: ""
+        branchSrno: ""
+        address: ""
+        city: ""
+        state: ""
+        pincode: ""
+        country: ""
+      }
+    }
+  ) {
     type
     masterCode
-    party{
+    party {
+      partyCode
       partyName
       partyType
+      validPartyRoles
+      organizationType
+      iecCode
+      branchSrno
+      address
+      city
+      state
+      pincode
+      country
+    }
+  }
+}
+
+mutation CreateParty {
+  createMasters(
+    input: {
+      type: PARTY
+      masterCode: "RAMSUNG"
+      party: {
+        partyCode: "RAMSUNG"
+        partyName: "Ramsung Electronics"
+        partyType: 1
+        validPartyRoles: [EXPORTER, SUPPLIER]
+        organizationType: ""
+        iecCode: ""
+        branchSrno: ""
+        address: ""
+        city: ""
+        state: ""
+        pincode: ""
+        country: ""
+      }
+    }
+  ) {
+    type
+    masterCode
+    party {
+      partyCode
+      partyName
+      partyType
+      validPartyRoles
+      organizationType
+      iecCode
+      branchSrno
+      address
+      city
+      state
+      pincode
+      country
     }
   }
 }

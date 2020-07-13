@@ -1,7 +1,6 @@
 type Masters
   @model
-  @key(fields: ["type", "masterCode"])
-  @auth(rules: [{ allow: owner }]) {
+  @key(fields: ["type", "masterCode"]) {
   type: MasterType!
   """
   The masterCode maps to the indiviual code field of each master type.
@@ -20,12 +19,12 @@ type Party {
   validPartyRoles: [PartyRole]
   organizationType: String
   iecCode: String
-  branchSrno: String
+  branchSrNo: String
   address: String
-  city: Int
-  state: Int
+  city: String
+  state: String
   pincode: String
-  country: Int
+  country: String
 }
 
 type Product {
@@ -75,10 +74,10 @@ type HSN {
   policy: String
   casRegistryNumber: String
   remarks: String 
-  products : [Products]
-  hsnDuties:[HsnDuty]
-  notidtl:[NotificationHsn] @connection(keyName: "byhsns", fields: ["id"])
-  pga: [PgaHsn] @connection(keyName: "byPga", fields: ["id"])
+  products : [Product]
+  hsnDuties:[String]
+  notidtl:String
+  pga: String
 }
 
 enum MasterType {
