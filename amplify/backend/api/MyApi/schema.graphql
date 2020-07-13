@@ -1,27 +1,97 @@
-type Masters @model 
-	@key(fields: ["type", "masterCode"]){
-	type: MasterType!
-	masterCode: String!
-	party: Party,
-	product: Product,
-	svb: SVB
+type Masters
+  @model
+  @key(fields: ["type", "masterCode"])
+  @auth(rules: [{ allow: owner }]) {
+  type: MasterType!
+  """
+  The masterCode maps to the indiviual code field of each master type.
+  e.g. for MasterType = PARTY, masterCode = partyCode
+  """
+  masterCode: String!
+  party: Party
+  product: Product
+  svb: SVB
 }
 
-type Party{
-	partyName: String!
-	partyType: String!
+type Party {
+  partyCode: String! 
+  partyName: String!
+  partyType: Int
+  validPartyRoles: [PartyRole]
+  organizationType: String
+  iecCode: String
+  branchSrno: String
+  address: String
+  city: Int
+  state: Int
+  pincode: String
+  country: Int
 }
 
-type Product{
-	hsn: String!
+type Product {
+  hsn: HSN
+  partDescription: String 
+  supplier: Party 
+  partType: Int 
+  shipper: Party 
+  customer: Party
+  eximSchemeCode: String 
+  customsUom: Int
+  genericDescription: String 
+  manufacturer: Party 
+  brand: String
+  model: String 
+  enduse: String 
+  originCountry: Int
+  countryOfSource: Int 
+  countryOfTansit: Int
 }
 
-type SVB{
-	customsOffice: String!
+type SVB {
+  Company: Party 
+  shipper: Party 
+  relation: String!
+  svbRefNo: String
+  svbDate: AWSDate 
+  svbValidUpto: AWSDate 
+  customsOffice: String
+  tobeLoadedon: String 
+  loadingRateassval: String
+  assblStatus: Int
+  loadingDutyrate: Float 
+  loadingDutyratecur: Int
+  dutyStatus: Int
 }
 
-enum MasterType{
-	PARTY
-	SVB
-	PRODUCT
+type HSN {
+  hsncode: Int!
+  hsnDescription: String 
+  uomId: Int 
+  countryid: Int 
+  totChargeValue: Float 
+  effectiveStartdate: AWSDate 
+  effectiveEnddate: AWSDate 
+  status: Int
+  policy: String
+  casRegistryNumber: String
+  remarks: String 
+  products : [Products]
+  hsnDuties:[HsnDuty]
+  notidtl:[NotificationHsn] @connection(keyName: "byhsns", fields: ["id"])
+  pga: [PgaHsn] @connection(keyName: "byPga", fields: ["id"])
+}
+
+enum MasterType {
+  PARTY
+  SVB
+  PRODUCT
+}
+
+enum PartyRole {
+  IMPORTER
+  EXPORTER
+  CHA
+  BROKER
+  SVB
+  SUPPLIER
 }
